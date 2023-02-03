@@ -1,10 +1,23 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env.*local", "**/.env"],
+  "globalEnv": [
+    "NODE_ENV",
+    "PORT",
+    "CI"
+  ],
   "pipeline": {
     "build": {
+      "env": [
+        "SESSION_SECRET",
+        "ARC_LOCAL",
+        "ARC_TABLES_PORT"
+      ],
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
+    },
+    "clean": {
+      "outputs": []
     },
     "lint": {
       "outputs": []
